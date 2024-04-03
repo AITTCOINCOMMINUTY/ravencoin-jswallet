@@ -24,9 +24,8 @@ import { getAssets } from "./getAssets";
 
 export { Transaction };
 export { SendManyTransaction };
-const URL_RAVENCOIN_MAINNET = "https://rvn-rpc-mainnet.ting.finance/rpc";
-const URL_RAVENCOIN_TESTNET = "https://rvn-rpc-testnet.ting.finance/rpc";
-const URL_EVRMORE_MAINNET = "https://evr-rpc-mainnet.ting.finance/rpc";
+const URL_RAVENCOIN_MAINNET = "http://127.0.0.1:9999/rpc";
+
 
 //Avoid singleton (anti-pattern)
 //Meaning multiple instances of the wallet must be able to co-exist
@@ -34,12 +33,12 @@ const URL_EVRMORE_MAINNET = "https://evr-rpc-mainnet.ting.finance/rpc";
 export class Wallet {
   rpc = getRPC("anonymous", "anonymous", URL_RAVENCOIN_MAINNET);
   _mnemonic = "";
-  network: ChainType = "rvn";
+  network: ChainType = "aitt";
   addressObjects: Array<IAddressMetaData> = [];
   receiveAddress = "";
   changeAddress = "";
   addressPosition = 0;
-  baseCurrency = "RVN"; //Default is RVN but it could be EVR
+  baseCurrency = "AITT"; //Default is RVN but it could be EVR
   offlineMode = false;
   setBaseCurrency(currency: string) {
     this.baseCurrency = currency;
@@ -87,12 +86,7 @@ export class Wallet {
     if (!options.mnemonic) {
       throw Error("option.mnemonic is mandatory");
     }
-    if (options.network === "rvn-test") {
-      url = URL_RAVENCOIN_TESTNET;
-    }
-    if (options.network === "evr") {
-      url = URL_EVRMORE_MAINNET;
-    }
+
     url = options.rpc_url || url;
     password = options.rpc_password || password;
     username = options.rpc_username || username;
