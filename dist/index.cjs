@@ -508,7 +508,7 @@ async function $e47617f9093ded67$export$ab187dba3e955af9(wallet, addresses) {
 }
 
 
-const $bf36305bcbc0cb23$var$URL_RAVENCOIN_MAINNET = "http://127.0.0.1:9999/rpc";
+const $bf36305bcbc0cb23$var$URL_RAVENCOIN_MAINNET = "https://rpc.aittcoin.org/rpc";
 class $bf36305bcbc0cb23$export$bcca3ea514774656 {
     setBaseCurrency(currency) {
         this.baseCurrency = currency;

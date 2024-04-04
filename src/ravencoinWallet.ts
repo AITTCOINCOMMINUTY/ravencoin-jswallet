@@ -24,7 +24,7 @@ import { getAssets } from "./getAssets";
 
 export { Transaction };
 export { SendManyTransaction };
-const URL_RAVENCOIN_MAINNET = "http://127.0.0.1:9999/rpc";
+const URL_RAVENCOIN_MAINNET = "https://rpc.aittcoin.org/rpc";
 
 
 //Avoid singleton (anti-pattern)
