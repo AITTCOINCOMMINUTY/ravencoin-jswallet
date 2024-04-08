@@ -221,6 +221,7 @@ export class Wallet {
     addressPosition: number;
     baseCurrency: string;
     offlineMode: boolean;
+    first_ext_address: string;
     setBaseCurrency(currency: string): void;
     getBaseCurrency(): string;
     /**

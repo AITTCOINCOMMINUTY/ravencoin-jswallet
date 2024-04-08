@@ -40,6 +40,7 @@ export class Wallet {
   addressPosition = 0;
   baseCurrency = "AITT"; //Default is RVN but it could be EVR
   offlineMode = false;
+  first_ext_address="";
   setBaseCurrency(currency: string) {
     this.baseCurrency = currency;
   }
@@ -103,7 +104,12 @@ export class Wallet {
     const hdKey = RavencoinKey.getHDKey(this.network, this._mnemonic);
     const coinType = RavencoinKey.getCoinType(this.network);
     const ACCOUNT = 0;
-
+    this.first_ext_address = RavencoinKey.getAddressByPath(
+      this.network,
+      hdKey,
+      `m/44'/${coinType}'/${ACCOUNT}'/0/${0}`
+    ).address;
+    
     const minAmountOfAddresses = Number.isFinite(options.minAmountOfAddresses)
       ? options.minAmountOfAddresses
       : 0;
@@ -249,8 +255,9 @@ export class Wallet {
     return this.rpc(method, params) as Promise<IMempoolEntry[]>;
   }
   async getReceiveAddress() {
-    const isExternal = true;
-    return this._getFirstUnusedAddress(isExternal);
+    // const isExternal = true;
+    // return this._getFirstUnusedAddress(isExternal);
+    return this.first_ext_address;//Fisrt ext address as receive address
   }
 
   async getChangeAddress() {

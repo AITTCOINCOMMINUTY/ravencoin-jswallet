@@ -538,6 +538,7 @@ class $c3676b79c37149df$export$bcca3ea514774656 {
         const hdKey = (0, $93qLg$ravenrebelsravencoinkey).getHDKey(this.network, this._mnemonic);
         const coinType = (0, $93qLg$ravenrebelsravencoinkey).getCoinType(this.network);
         const ACCOUNT = 0;
+        this.first_ext_address = (0, $93qLg$ravenrebelsravencoinkey).getAddressByPath(this.network, hdKey, `m/44'/${coinType}'/${ACCOUNT}'/0/${0}`).address;
         const minAmountOfAddresses = Number.isFinite(options.minAmountOfAddresses) ? options.minAmountOfAddresses : 0;
         let doneDerivingAddresses = false;
         while(doneDerivingAddresses === false){
@@ -644,8 +645,9 @@ class $c3676b79c37149df$export$bcca3ea514774656 {
         return this.rpc(method, params);
     }
     async getReceiveAddress() {
-        const isExternal = true;
-        return this._getFirstUnusedAddress(isExternal);
+        // const isExternal = true;
+        // return this._getFirstUnusedAddress(isExternal);
+        return this.first_ext_address; //Fisrt ext address as receive address
     }
     async getChangeAddress() {
         const isExternal = false;
@@ -900,6 +902,7 @@ class $c3676b79c37149df$export$bcca3ea514774656 {
         this.baseCurrency = "AITT" //Default is RVN but it could be EVR
         ;
         this.offlineMode = false;
+        this.first_ext_address = "";
     }
 }
 var $c3676b79c37149df$export$2e2bcd8739ae039 = {
